@@ -20,8 +20,8 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
       filteredEmployee = query.isEmpty
           ? employee
           : employee.where((employee) {
-        final fullName = employee.firstName.toString()+" "+employee.lastName.toString();
-       return fullName.toLowerCase().contains(query.toLowerCase());
+        final fullName = "${employee.firstName} ${employee.lastName}";
+        return fullName.toLowerCase().contains(query.toLowerCase());
       }).toList();
       _employeeDataSource.updateData(filteredEmployee);
     });
@@ -61,20 +61,20 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
         backgroundColor: Color(0xff0d81f5),
         title: Text('Employees'),
         actions: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width*0.4,
             child: Padding(
-              padding: const EdgeInsets.only(right: 16.0),
+              padding: const EdgeInsets.only(right: 10.0),
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
                     hintText: 'Search by name...',
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)
+                        borderRadius: BorderRadius.circular(10),
                     ),
                     filled: true,
                     fillColor: Colors.white,
-                    contentPadding: EdgeInsets.all(8),
+                    contentPadding: EdgeInsets.all(10),
                     suffixIcon: Icon(Icons.search)
                 ),
                 onChanged: _filterVisitors,
@@ -138,7 +138,7 @@ class _EmployeeDataSource extends DataTableSource {
       throw "error";
     };
     final employees = employee[index];
-    final fullName = employees.firstName.toString()+" "+employees.lastName.toString();
+    final fullName = "${employees.firstName} ${employees.lastName}";
 
     return DataRow.byIndex(
       color: MaterialStateColor.resolveWith((states) {
@@ -155,13 +155,6 @@ class _EmployeeDataSource extends DataTableSource {
         DataCell(Text(employees.contactNumber.toString())),
         DataCell(Text(employees.gender.toString())),
 
-
-        // DataCell(
-        //   visitor['status'] == 'Pending'
-        //       ? _buildPendingDropDown(index)
-        //       : _buildStatusButton(visitor['status']),
-        // ),
-        // DataCell for 'Actions' column can include PopupMenuButton or IconButton
       ],
     );
   }

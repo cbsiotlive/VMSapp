@@ -9,17 +9,17 @@ ReadEmployeeModel readEmployeeModelFromJson(String str) => ReadEmployeeModel.fro
 String readEmployeeModelToJson(ReadEmployeeModel data) => json.encode(data.toJson());
 
 class ReadEmployeeModel {
-  dynamic employeeId;
+  int employeeId;
   String firstName;
   String lastName;
   String gender;
-  String dateOfBirth;
-  dynamic contactNumber;
+  DateTime dateOfBirth;
+  String contactNumber;
   String email;
   String address;
   String department;
   String position;
-  String hireDate;
+  DateTime hireDate;
   DateTime createdAt;
   DateTime updatedAt;
   dynamic departmentId;
@@ -45,20 +45,20 @@ class ReadEmployeeModel {
 
   factory ReadEmployeeModel.fromJson(Map<String, dynamic> json) => ReadEmployeeModel(
     employeeId: json["employee_id"],
-    firstName: json["first_name"]??"",
-    lastName: json["last_name"]??"",
-    gender: json["gender"]??"",
-    dateOfBirth: json["date_of_birth"]??"",
-    contactNumber: json["contact_number"]??"",
-    email: json["email"]??"",
-    address: json["address"]??"",
-    department: json["department"]??"",
-    position: json["position"]??"",
-    hireDate: json["hire_date"]??"",
+    firstName: json["first_name"],
+    lastName: json["last_name"],
+    gender: json["gender"],
+    dateOfBirth: DateTime.parse(json["date_of_birth"]),
+    contactNumber: json["contact_number"],
+    email: json["email"],
+    address: json["address"],
+    department: json["department"],
+    position: json["position"],
+    hireDate: DateTime.parse(json["hire_date"]),
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
-    departmentId: json["department_id"]??"",
-    designationId: json["designation_id"]??"",
+    departmentId: json["department_id"],
+    designationId: json["designation_id"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -66,13 +66,13 @@ class ReadEmployeeModel {
     "first_name": firstName,
     "last_name": lastName,
     "gender": gender,
-    "date_of_birth": dateOfBirth,
+    "date_of_birth": dateOfBirth.toIso8601String(),
     "contact_number": contactNumber,
     "email": email,
     "address": address,
     "department": department,
     "position": position,
-    "hire_date": hireDate,
+    "hire_date": hireDate.toIso8601String(),
     "created_at": createdAt.toIso8601String(),
     "updated_at": updatedAt.toIso8601String(),
     "department_id": departmentId,
