@@ -8,19 +8,13 @@ class EmployeeProvider with ChangeNotifier {
 
   List<ReadEmployeeModel> get employee => _employee;
 
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
   Future<void> loadVisitors() async {
-    _isLoading = true;
-    notifyListeners();
 
     try {
       _employee = await _employeeService.fetchVisitors();
     } catch (e) {
       print('Error fetching employee: $e');
     } finally {
-      _isLoading = false;
       notifyListeners();
     }
   }

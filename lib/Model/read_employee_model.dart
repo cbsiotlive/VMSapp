@@ -9,12 +9,12 @@ ReadEmployeeModel readEmployeeModelFromJson(String str) => ReadEmployeeModel.fro
 String readEmployeeModelToJson(ReadEmployeeModel data) => json.encode(data.toJson());
 
 class ReadEmployeeModel {
-  int employeeId;
+  dynamic employeeId;
   String firstName;
   String lastName;
   String gender;
   String dateOfBirth;
-  int contactNumber;
+  dynamic contactNumber;
   String email;
   String address;
   String department;
@@ -22,8 +22,8 @@ class ReadEmployeeModel {
   String hireDate;
   DateTime createdAt;
   DateTime updatedAt;
-  int departmentId;
-  int designationId;
+  dynamic departmentId;
+  dynamic designationId;
 
   ReadEmployeeModel({
     required this.employeeId,
